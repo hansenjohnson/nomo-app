@@ -9,6 +9,7 @@ This web application, built using the R Shiny package, serves to display data fr
 - Allow user to define deployments and update notes
 
 ## Project organization
-`app.R` = source code for shiny application
-`data` = noise data
+`app.R` = source code for shiny application  
+`src` = shell scripts for data operations  
+`data` = noise data  
 

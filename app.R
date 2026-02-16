@@ -193,7 +193,7 @@ server <- function(input, output, session) {
         time_local = format(time_local, "%Y-%m-%d %H:%M:%S")
       ) %>%
       arrange(desc(time_local))
-    datatable(df, filter = "top", options = list(pageLength = 25), rownames = F)
+    datatable(df, filter = "top", options = list(pageLength = 10), rownames = F)
   })
 
   # data download -----------------------------------------------------------

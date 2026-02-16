@@ -1,0 +1,12 @@
+# System
+.DS_Store
+
+# R
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+
+# Project
+data
+notes.md

@@ -31,7 +31,7 @@ ui <- dashboardPage(
         solidHeader = TRUE,
         width = 12,
         collapsible = TRUE,
-        plotlyOutput("plot", height = "400px")
+        plotOutput("plot", height = "400px")
       )
     ),
     fluidRow(
@@ -41,7 +41,7 @@ ui <- dashboardPage(
         solidHeader = TRUE,
         width = 6,
         collapsible = TRUE,
-        plotlyOutput("hourly", height = "400px")
+        plotOutput("hourly", height = "400px")
       ),
       box(
         title = "Comparison",
@@ -49,7 +49,7 @@ ui <- dashboardPage(
         solidHeader = TRUE,
         width = 6,
         collapsible = TRUE,
-        plotlyOutput("comparison", height = "400px")
+        plotOutput("comparison", height = "400px")
       )
     ),
     fluidRow(
@@ -106,10 +106,6 @@ server <- function(input, output, session) {
     )
   })
   
-  observe({
-    print(input$dep)  
-  })
-  
   d <- reactive({
     if("All" %in% input$dep){
       data
@@ -121,7 +117,7 @@ server <- function(input, output, session) {
   # plot timeseries ---------------------------------------------------------
 
   # Render the plotly plot
-  output$plot <- renderPlotly({
+  output$plot <- renderPlot({
     
     # convert reactive data object
     df = d()
@@ -132,14 +128,14 @@ server <- function(input, output, session) {
       geom_point() +
       labs(x = 'Time (Eastern)', y = 'Noise level (dB)', color = 'Deployment', group = 'Deployment') +
       theme_minimal()
-    
-    ggplotly(p)
+    p
+    # ggplotly(p)
   })
   
   # plot comparison ---------------------------------------------------------
 
   # Render the plotly plot
-  output$comparison <- renderPlotly({
+  output$comparison <- renderPlot({
     
     # convert reactive data object
     df = d()
@@ -151,13 +147,14 @@ server <- function(input, output, session) {
       labs(x = 'Deployment', y = 'Noise level (dB)') +
       theme_minimal()+
       theme(legend.position = "none")
-    ggplotly(p)
+    # ggplotly(p)
+    p
   })
   
   # plot hourly -------------------------------------------------------------
 
   # Render the hourly plot
-  output$hourly <- renderPlotly({
+  output$hourly <- renderPlot({
     
     # convert reactive data object
     df = d()
@@ -180,7 +177,8 @@ server <- function(input, output, session) {
       geom_line(data = df_sum, aes(x = local_hour, y = mean_dB, color = dep_id, group = dep_id))+
       labs(x = 'Hour of day (Eastern)', y = 'Noise level (dB)', color = 'Deployment', group = 'Deployment', fill = 'Deployment') +
       theme_minimal()
-    ggplotly(p)
+    # ggplotly(p)
+    p
   })
   
   # plot table --------------------------------------------------------------

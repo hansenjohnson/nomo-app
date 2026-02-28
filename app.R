@@ -1,10 +1,10 @@
 # app.R
-library(shiny)
-library(shinydashboard)
-library(ggplot2)
-library(plotly)
-library(tidyverse)
-library(lubridate)
+suppressPackageStartupMessages(library(shiny))
+suppressPackageStartupMessages(library(shinydashboard))
+suppressPackageStartupMessages(library(ggplot2))
+# suppressPackageStartupMessages(library(plotly))
+suppressPackageStartupMessages(library(tidyverse))
+# library(lubridate)
 # library(DT)
 
 # --- UI ---

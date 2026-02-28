@@ -5,7 +5,7 @@ library(ggplot2)
 library(plotly)
 library(tidyverse)
 library(lubridate)
-library(DT)
+# library(DT)
 
 # --- UI ---
 

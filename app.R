@@ -59,9 +59,9 @@ ui <- dashboardPage(
         solidHeader = TRUE,
         width = 12,
         collapsible = TRUE,
-        downloadButton("downloadData", "Download"),
-        p(),
-        DTOutput("table")
+        downloadButton("downloadData", "Download")
+        # p(),
+        # DTOutput("table")
       )
     )
   )
@@ -166,15 +166,15 @@ server <- function(input, output, session) {
   # plot table --------------------------------------------------------------
 
   # Render the filterable table
-  output$table <- renderDT({
-    df <- d() %>%
-      mutate(
-        time_utc = format(time_utc, "%Y-%m-%d %H:%M:%S"),
-        time_local = format(time_local, "%Y-%m-%d %H:%M:%S")
-      ) %>%
-      arrange(desc(time_local))
-    datatable(df, filter = "top", options = list(pageLength = 10), rownames = F)
-  })
+  # output$table <- renderDT({
+  #   df <- d() %>%
+  #     mutate(
+  #       time_utc = format(time_utc, "%Y-%m-%d %H:%M:%S"),
+  #       time_local = format(time_local, "%Y-%m-%d %H:%M:%S")
+  #     ) %>%
+  #     arrange(desc(time_local))
+  #   datatable(df, filter = "top", options = list(pageLength = 10), rownames = F)
+  # })
 
   # data download -----------------------------------------------------------
 

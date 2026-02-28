@@ -71,28 +71,10 @@ ui <- dashboardPage(
 
 server <- function(input, output, session) {
   
+  # process data ------------------------------------------------------------
 
-  # read in data ------------------------------------------------------------
-
-  # Read text files from server
-  flist=list.files(path = 'data/raw/NOMO-01', pattern = "*.txt", full.names = T, recursive = T)
-  out=vector('list', length = length(flist))
-  for(ii in seq_along(flist)){
-    out[[ii]]=read.delim(flist[ii],sep = ",",header = F)
-  }
-  data = bind_rows(out)
-  colnames(data) = c('id', 'tstamp','dB')
-  data = data %>%
-    mutate(
-      time_utc = as.POSIXct(tstamp, format = '%Y-%m-%d_%H%M%SZ', tz = 'UTC'),
-      time_local = with_tz(time_utc, tzone = 'America/New_York'),
-      dB = as.numeric(dB),
-      dep_id = str_split(flist, pattern = '/', simplify = T)[,4]) %>%
-    arrange(time_utc) %>%
-    select(-tstamp) %>%
-    tibble()
-  
-  print(summary(data))
+  # read in data
+  data = readRDS('data/processed/noise.rds')
   
   # Dynamically create deployment selectors based on CSV columns
   observe({

@@ -12,6 +12,7 @@ ofile = 'data/processed/noise.rds'
 # setup -------------------------------------------------------------------
 
 library(tidyverse)
+library(lubridate)
 odir = dirname(ofile)
 if(!dir.exists(odir)){dir.create(odir, recursive = T)}
 

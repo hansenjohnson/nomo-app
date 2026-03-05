@@ -7,6 +7,11 @@ suppressPackageStartupMessages(library(tidyverse))
 # suppressPackageStartupMessages(library(plotly))
 # suppressPackageStartupMessages(library(lubridate))
 
+# global ------------------------------------------------------------------
+
+# process data
+source('r/proc_noise.R')
+
 # ui ----------------------------------------------------------------------
 
 ui <- dashboardPage(

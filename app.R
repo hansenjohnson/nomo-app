@@ -104,8 +104,8 @@ server <- function(input, output, session) {
     
     # plot
     p <- ggplot(df, aes(x = time_local, y = dB, color = dep_id, group = dep_id)) +  
-      geom_path() +
-      geom_point() +
+      # geom_path() +
+      geom_point(shape = 1, alpha = 0.7) +
       labs(x = 'Time (Eastern)', y = 'Noise level (dB)', color = 'Deployment', group = 'Deployment') +
       theme_minimal()
 
@@ -152,7 +152,7 @@ server <- function(input, output, session) {
     
     # plot
     p <- ggplot() +  
-      geom_point(data = df, aes(x = local_hour, y = dB, color = dep_id), shape = 1) +
+      geom_point(data = df, aes(x = local_hour, y = dB, color = dep_id), shape = 1, alpha = 0.7) +
       geom_ribbon(data = df_sum, aes(x = local_hour, ymin = min_dB, ymax = max_dB, color = NULL, fill = dep_id, group = dep_id), alpha = 0.3)+
       geom_line(data = df_sum, aes(x = local_hour, y = mean_dB, color = dep_id, group = dep_id))+
       labs(x = 'Hour of day (Eastern)', y = 'Noise level (dB)', color = 'Deployment', group = 'Deployment', fill = 'Deployment') +

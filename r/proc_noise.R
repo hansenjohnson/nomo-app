@@ -11,8 +11,8 @@ ofile = 'data/processed/noise.rds'
 
 # setup -------------------------------------------------------------------
 
-library(tidyverse)
-library(lubridate)
+suppressPackageStartupMessages(library(tidyverse))
+suppressPackageStartupMessages(library(lubridate))
 odir = dirname(ofile)
 if(!dir.exists(odir)){dir.create(odir, recursive = T)}
 
@@ -28,20 +28,20 @@ for(ii in seq_along(flist)){
 }
 
 # flatten
-data = bind_rows(out)
+dd = bind_rows(out)
 
 # name columns
-colnames(data) = c('id', 'tstamp','dB')
+colnames(dd) = c('id', 'tstamp','dB')
 
 # format
-df = data %>%
-  mutate(
+df = dd %>%
+  dplyr::mutate(
     time_utc = as.POSIXct(tstamp, format = '%Y-%m-%d_%H%M%SZ', tz = 'UTC'),
     time_local = with_tz(time_utc, tzone = 'America/New_York'),
     dB = as.numeric(dB),
     dep_id = str_split(flist, pattern = '/', simplify = T)[,4]) %>%
-  arrange(time_utc) %>%
-  select(-tstamp) %>%
+  dplyr::arrange(time_utc) %>%
+  dplyr::select(-tstamp) %>%
   tibble()
 
 # save

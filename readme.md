@@ -10,6 +10,9 @@ Currently, the NOMO systems send noise data (via cell) at regular intervals to `
 ## To do
 - Password protection
 - Allow user to define deployments and update notes
+    - Use an interactive table that reads/writes to a CSV on the server
+    - Use this to assign a name, start and end time, and notes to each deployment
+    - On the back end, do not aggregate data into deployment folders but keep it all pooled. Assign deployment IDs in the app.
 - Add time slider to adjust date/time range
 - Generalize to multiple NOMOs
 

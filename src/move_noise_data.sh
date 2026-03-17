@@ -16,7 +16,7 @@ fi
 
 # --- DESTINATION RELATIVE TO SOURCE ---
 SOURCE_DIR="${PROJ_DIR}/data/raw/NOMO-01"
-DEST_DIR="${SOURCE_DIR}/2026-03-07_coral"
+DEST_DIR="${SOURCE_DIR}/2026-03-16_quincy"
 
 mkdir -p "$DEST_DIR"
 

@@ -14,9 +14,25 @@ else
     exit 1
 fi
 
-# --- DESTINATION RELATIVE TO SOURCE ---
+# --- NOMO-01 FILES ---
 SOURCE_DIR="${PROJ_DIR}/data/raw/NOMO-01"
 DEST_DIR="${SOURCE_DIR}/2026-04-20_bench"
+
+mkdir -p "$DEST_DIR"
+
+cd "$SOURCE_DIR" 
+
+# --- STORE FILE LIST IN VARIABLE ---
+FILES=$(find . -maxdepth 1 -type f -name "????-??-??_??????Z.txt")
+
+# --- MOVE FILES IF ANY EXIST ---
+if [[ -n "$FILES" ]]; then
+    mv $FILES "$DEST_DIR"/
+fi
+
+# --- NOMO-02 FILES ---
+SOURCE_DIR="${PROJ_DIR}/data/raw/NOMO-02"
+DEST_DIR="${SOURCE_DIR}/2026-04-22_testing"
 
 mkdir -p "$DEST_DIR"
 

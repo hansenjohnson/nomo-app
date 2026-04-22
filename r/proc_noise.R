@@ -4,7 +4,7 @@
 # input -------------------------------------------------------------------
 
 # data directory
-ddir = 'data/raw/NOMO-01'
+ddir = 'data/raw/'
 
 # output file
 ofile = 'data/processed/noise.rds'
@@ -39,7 +39,7 @@ df = dd %>%
     time_utc = as.POSIXct(tstamp, format = '%Y-%m-%d_%H%M%SZ', tz = 'UTC'),
     time_local = with_tz(time_utc, tzone = 'America/New_York'),
     dB = as.numeric(dB),
-    dep_id = str_split(flist, pattern = '/', simplify = T)[,4]) %>%
+    dep_id = paste0(id, '_', str_split(flist, pattern = '/', simplify = T)[,5])) %>%
   dplyr::arrange(time_utc) %>%
   dplyr::select(-tstamp) %>%
   tibble()

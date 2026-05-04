@@ -32,7 +32,7 @@ fi
 
 # --- NOMO-02 FILES ---
 SOURCE_DIR="${PROJ_DIR}/data/raw/NOMO-02"
-DEST_DIR="${SOURCE_DIR}/2026-04-27_grouper"
+DEST_DIR="${SOURCE_DIR}/2026-04-30_bluehole"
 
 mkdir -p "$DEST_DIR"
 

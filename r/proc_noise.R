@@ -26,9 +26,10 @@ out=vector('list', length = length(flist))
 for(ii in seq_along(flist)){
   if(file.size(flist[ii]) == 0){
     warning("Skipping empty file: ", flist[ii], "")
-    next
-  } 
-  out[[ii]]=read.delim(flist[ii],sep = ",",header = F)
+    out[[ii]]=tibble(V1=NA,V2=NA,V3=NA)
+  } else {
+    out[[ii]]=read.delim(flist[ii],sep = ",",header = F)  
+  }
 }
 
 # flatten

@@ -24,6 +24,10 @@ flist=list.files(path = ddir, pattern = "*.txt", full.names = T, recursive = T)
 # read all data files
 out=vector('list', length = length(flist))
 for(ii in seq_along(flist)){
+  if(file.size(flist[ii]) == 0){
+    warning("Skipping empty file: ", flist[ii], "")
+    next
+  } 
   out[[ii]]=read.delim(flist[ii],sep = ",",header = F)
 }
 

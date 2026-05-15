@@ -45,6 +45,7 @@ df = dd %>%
     time_local = with_tz(time_utc, tzone = 'America/New_York'),
     dB = as.numeric(dB),
     dep_id = paste0(id, '_', str_split(flist, pattern = '/', simplify = T)[,5])) %>%
+  drop_na() %>%
   dplyr::arrange(time_utc) %>%
   dplyr::select(-tstamp) %>%
   tibble()
